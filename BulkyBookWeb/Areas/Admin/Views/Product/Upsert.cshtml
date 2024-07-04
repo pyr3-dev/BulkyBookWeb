@@ -17,7 +17,7 @@
                 </div>
                 <div class="mb-3">
                     <label asp-for="Product.Description"></label>
-                    <textarea asp-for="Product.Description" class="form-control" />
+                    <textarea asp-for="Product.Description" class="form-control"></textarea>
                     <span asp-validation-for="Product.Description" class="text-danger"></span>
                 </div>
 
@@ -75,19 +75,18 @@
                     <span asp-validation-for="Product.CoverTypeId" class="text-danger"></span>
 
                 </div>
+            </div>
+            <div class="col-12">
+                @if (Model.Product.Id != 0)
+                {
+                    <button type="submit" class="btn btn-primary" style="width:150px">Update</button>
 
-                <div class="col-12">
-                    @if (Model.Product.Id != 0)
-                    {
-                        <button type="submit" class="btn btn-primary" style="width:150px">Update</button>
-
-                    }
-                    else
-                    {
-                        <button type="submit" class="btn btn-primary" onclick="return ValidateInput()" style="width:150px">Create</button>
-                    }
-                    <a asp-controller="CoverType" asp-action="Index" style="width:150px" class="btn btn-secondary">Back</a>
-                </div>
+                }
+                else
+                {
+                    <button type="submit" class="btn btn-primary" onclick="return ValidateInput()" style="width:150px">Create</button>
+                }
+                <a asp-controller="CoverType" asp-action="Index" style="width:150px" class="btn btn-secondary">Back</a>
             </div>
         </div>
         <div class="col-2">
@@ -104,16 +103,8 @@
     }
     <script>
         tinymce.init({
-            selector: 'textarea',
-            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
-            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-            tinycomments_mode: 'embedded',
-            tinycomments_author: 'Author name',
-            mergetags_list: [
-                { value: 'First.Name', title: 'First Name' },
-                { value: 'Email', title: 'Email' },
-            ],
-            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+            selector: 'textarea',  // change this value according to the HTML
+            toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | outdent indent'
         });
         function ValidateInput() {
             if (document.getElementById("uploadBox").value == "") {

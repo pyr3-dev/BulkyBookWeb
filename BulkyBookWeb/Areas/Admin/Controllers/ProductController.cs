@@ -108,9 +108,8 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
             return Json(new { data = productList });
         }
         //POST
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public IActionResult DeletePOST(int? id)
+        [HttpDelete]
+        public IActionResult Delete(int? id)
         {
             var obj = _unitOfWork.Product.GetFirstOrDefault(c => c.Id == id);
 
